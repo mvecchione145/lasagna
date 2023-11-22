@@ -1,0 +1,26 @@
+{
+    "title": "Song",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "default": "Untitled"
+        },
+        "runtime": {
+            "type": "integer",
+            "default": 200
+        },
+        "artists": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "default": "Artist"
+                    }
+                }
+            }
+        }
+    }
+}
