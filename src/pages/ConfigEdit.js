@@ -2,13 +2,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ConfigEdit.css';
 
-import Config from './Config';
+import Config from '../modules/Config';
 
 
-function ConfigEdit() {
+function ConfigEdit(props) {
   return (
     <div className='container'>
-      <Config />
+      <Config schema={props.schema}/>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import './Home.css';
 
 function Home() {
   return (
-    <div className="container Config">
+    <div className="container home">
       <div className='container'>
         <p>Tool for managing configuration files.</p>
       </div>

@@ -5,16 +5,14 @@ import './Config.css';
 import validator from '@rjsf/validator-ajv8';
 import Form from '@rjsf/bootstrap-4';
 
-
-const formSchema = require("./form/schema.json");
 const log = (type) => console.log.bind(console, type);
 
-function Config() {
+function Config(props) {
   return (
-    <div className="container Config">
+    <div className="container config">
       <div className='container'>
       <Form
-        schema={formSchema}
+        schema={props.schema}
         validator={validator}
         onChange={log('changed')}
         onSubmit={log('submitted')}
