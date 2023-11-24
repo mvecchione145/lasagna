@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Schemas.css';
 
+import files from './../files';
+
 function Schemas() {
   const [fileNames, setFileNames] = useState([]);
 
@@ -8,7 +10,7 @@ function Schemas() {
     // Function to fetch file names from the server
     const fetchFileNames = async () => {
       try {
-        const response = await fetch('/api/schemas'); // Adjust the URL as needed
+        const response = await files.getSchemas(); // Adjust the URL as needed
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
