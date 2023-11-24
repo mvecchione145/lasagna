@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = require('path');
+// const path = require('path');
 
 function getListSchemas(directoryPath) {
   try {
@@ -15,7 +15,6 @@ function getListSchemas(directoryPath) {
   }
 }
 
-// Usage:
-// Replace './schemas' with the actual path to your directory
-const schemas = getListSchemas('./schemas');
-console.log(schemas);
+module.exports = {
+    getListSchemas,
+};

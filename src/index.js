@@ -12,7 +12,6 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 
-const formSchema = require("./form/schema.json");
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,7 +21,7 @@ root.render(
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
-          <Route path="/config-edit" element={<ConfigEdit schema={formSchema}/>}/>
+          <Route path="/config-edit" element={<ConfigEdit/>}/>
           <Route path="/configs" element={<Configs/>}/>
           <Route path="/schemas" element={<Schemas/>}/>
           <Route path="/settings" element={<Settings/>}/>
