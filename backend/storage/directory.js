@@ -19,8 +19,8 @@ function getSchemas(baseDirectory) {
     });
 };
 
-function getConfigs(baseDirectory) {
-    dirPath = path.join(baseDirectory, '/_CONFIGS')
+function getConfigs(baseDirectory, prefix) {
+    dirPath = path.join(baseDirectory, '/_CONFIGS', prefix)
     return new Promise((resolve, reject) => {
       fs.readdir(dirPath, (err, files) => {
         if (err) {

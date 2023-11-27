@@ -1,6 +1,6 @@
 import './ConfigEdit.css';
 
-import Config from '../modules/Config';
+import Config from '../components/Config';
 
 
 function ConfigEdit(props) {

@@ -44,9 +44,10 @@ app.get("/schemas", async (req, res) => {
 });
 
 // Endpoint to get paginated list of configuration files
-app.get("/configurations", async (req, res) => {
+app.get("/configs/:fileName", async (req, res) => {
   try {
-    const configFiles = await getConfigs(directoryPath);
+    const { fileName } = req.params;
+    const configFiles = await getConfigs(directoryPath, fileName);
     res.json(configFiles);
   } catch (err) {
     res.status(500).json({ error: err.message });

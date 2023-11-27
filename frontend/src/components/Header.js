@@ -13,10 +13,14 @@ import {
 function Header() {
   return (
     <div className="container header">
-      <p className="fs-1">
-        <FontAwesomeIcon className="fs-1" icon={faLayerGroup} /> lasagna
-      </p>
-      <p className="fs-3">config management tool</p>
+      <div className="container title">
+        <p className="fs-1">
+          <FontAwesomeIcon className="fs-1" icon={faLayerGroup} /> lasagna
+        </p>
+      </div>
+      <div className="container subtitle">
+        <p className="fs-3">config management tool</p>
+      </div>
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <button
@@ -32,14 +36,15 @@ function Header() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav justify-content-around w-100">
-            <li className="nav-item">
+              <li className="nav-item">
                 <a className="nav-link" aria-current="page" href="/">
-                <FontAwesomeIcon className="fs-4" icon={faHome} /> home
-            </a>
-            </li>
+                  <FontAwesomeIcon className="fs-4" icon={faHome} /> home
+                </a>
+              </li>
               <li className="nav-item">
                 <a className="nav-link" aria-current="page" href="/schemas">
-                  <FontAwesomeIcon className="fs-4" icon={faFolderTree} /> schemas
+                  <FontAwesomeIcon className="fs-4" icon={faFolderTree} />{" "}
+                  schemas
                 </a>
               </li>
               <li className="nav-item">
