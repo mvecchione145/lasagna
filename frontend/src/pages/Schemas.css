@@ -1,3 +1,17 @@
-a, p, h1, h2, h3, h4, h5, label, input {
+* {
     font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 }
+
+/* Schemas.css */
+.table-bordered {
+    border: .5px solid #d7d7d7;
+    border-collapse: collapse;
+    width: 50%
+  }
+  
+  .table-bordered th,
+  .table-bordered td {
+    border: .5px solid #c5c5c5;
+    padding: 0.5rem;
+  }
+  

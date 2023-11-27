@@ -12,11 +12,11 @@ import {
 
 function Header() {
   return (
-    <div className="container title">
-      <p className="font-monospace fs-1">
+    <div className="container header">
+      <p className="fs-1">
         <FontAwesomeIcon className="fs-1" icon={faLayerGroup} /> lasagna
       </p>
-      <p className="font-monospace fs-3">config management tool</p>
+      <p className="fs-3">config management tool</p>
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <button

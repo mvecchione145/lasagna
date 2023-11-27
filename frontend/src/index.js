@@ -7,6 +7,7 @@ import Configs from "./pages/Configs";
 import Schemas from "./pages/Schemas";
 import Home from "./pages/Home";
 import Header from "./modules/Header"
+import Footer from "./modules/Footer"
 import Settings from "./pages/Settings"
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -28,6 +29,7 @@ root.render(
         </Route>
       </Routes>
     </BrowserRouter>
+    <Footer />
   </React.StrictMode>
 );
 
