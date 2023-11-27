@@ -1,5 +1,3 @@
-// Import Bootstrap CSS
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './ConfigEdit.css';
 
 import Config from '../modules/Config';

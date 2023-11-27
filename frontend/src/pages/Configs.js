@@ -1,4 +1,3 @@
-// Import Bootstrap CSS
 import './Configs.css';
 
 function Configs() {

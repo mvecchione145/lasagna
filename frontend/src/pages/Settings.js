@@ -1,4 +1,3 @@
-// Import Bootstrap CSS
 import './Settings.css';
 
 function Settings() {
