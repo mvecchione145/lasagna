@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 function ConfigsTable(props) {
   const navigate = useNavigate(); // Initialize useNavigate
   // Function to handle redirection to add config page
-  const handleEditConfig = (fileName) => {
-    navigate(`/edit-config/${fileName}`);
+  const handleEditConfig = (schemaName, configName) => {
+    navigate(`/edit-config/${schemaName}/${configName}`);
   };
 
   return (
@@ -22,7 +22,7 @@ function ConfigsTable(props) {
             <td className="text-right">
               <button
                 className="btn btn-secondary me-2"
-                onClick={() => handleEditConfig(fileName)}
+                onClick={() => handleEditConfig(props.schemaName, fileName)}
               >
                 edit config
               </button>

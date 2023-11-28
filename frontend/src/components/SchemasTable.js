@@ -21,19 +21,19 @@ function SchemasTable(props) {
         </tr>
       </thead>
       <tbody>
-        {props.fileNames.map((fileName, index) => (
+        {props.files.map((file, index) => (
           <tr key={index}>
-            <td className="text-left">{fileName}</td>
+            <td className="text-left">{file.name}</td>
             <td className="text-right">
               <button
                 className="btn btn-secondary me-2"
-                onClick={() => handleAddConfig(fileName)}
+                onClick={() => handleAddConfig(file.name)}
               >
                 add config
               </button>
               <button
                 className="btn btn-light"
-                onClick={() => handleListConfigs(fileName)}
+                onClick={() => handleListConfigs(file.name)}
               >
                 list configs
               </button>
