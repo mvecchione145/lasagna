@@ -1,5 +1,6 @@
 {
     "title": "Song",
+    "name": "song_schema",
     "type": "object",
     "properties": {
         "name": {

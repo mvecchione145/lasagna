@@ -3,7 +3,7 @@ version: '3.1'
 services:
 
   mongo:
-    image: mongo
+    image: mongo:latest
     restart: always
     ports:
       - 27017:27017
@@ -12,22 +12,22 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
-      - database:/data/db
+      - ./database:/data/db
 
-  frontend:
-    build: ./frontend
-    restart: always
-    ports:
-      - 3000:3000
-    environment:
-      REACT_APP_BACKEND_URL: http://localhost:3001
+  # frontend:
+  #   build: ./frontend
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+  #   environment:
+  #     REACT_APP_BACKEND_URL: http://localhost:3001
 
-  backend:
-    build: ./backend
-    restart: always
-    ports:
-      - 3001:3001
-    environment:
-      DATABASE_URL: mongodb://root:example@mongo:27017/
-      FRONTEND_URL: http://localhost:3000
-      PORT: 3001
+  # backend:
+  #   build: ./backend
+  #   restart: always
+  #   ports:
+  #     - 3001:3001
+  #   environment:
+  #     DATABASE_URL: mongodb://root:example@mongo:27017/
+  #     FRONTEND_URL: http://localhost:3000
+  #     PORT: 3001

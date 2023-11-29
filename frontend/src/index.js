@@ -33,7 +33,7 @@ const App = () => (
           <Route path="/configs" element={<Configs />} />
           <Route path="/schemas" element={<Schemas />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/list-configs/:schemaName" element={<ListConfigs />} />
+          <Route path="/list-configs/:schemaId" element={<ListConfigs />} />
           
 
         </Routes>

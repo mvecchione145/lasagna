@@ -1,32 +1,36 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require('cors');
 const mongoose = require('mongoose');
 
 require("dotenv").config();
 
-// Connect to MongoDB
-mongoose.connect(process.env.DATABASE_URL);
+// Connect to MongoDB with error handling and new parser options
+mongoose.connect(process.env.DATABASE_URL)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // Define Schema models
-const SchemaFile = mongoose.model('SchemaFile', new mongoose.Schema({ name: String, data: Buffer }));
-const ConfigFile = mongoose.model('ConfigFile', new mongoose.Schema({ fileName: String, data: Object }));
+const schemaFileSchema = new mongoose.Schema({ name: String, data: Buffer, description: String });
+schemaFileSchema.index({ name: 1 }); // Create an index on the name field if it is frequently queried
+
+const configFileSchema = new mongoose.Schema({ fileName: String, data: Object, schemaId: String });
+configFileSchema.index({ schemaId: 1 }); // Index schemaId if it's used often in queries
+
+const SchemaFile = mongoose.model('SchemaFile', schemaFileSchema);
+const ConfigFile = mongoose.model('ConfigFile', configFileSchema);
 
 const app = express();
 
-const frontendUrl = process.env.FRONTEND_URL;
-const port = process.env.PORT;
-
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors({
-  origin: frontendUrl,
+  origin: process.env.FRONTEND_URL,
   optionsSuccessStatus: 200
 }));
 
 // Endpoint to get paginated list of schema files
 app.get("/schemas", async (req, res) => {
   try {
-    const schemaFiles = await SchemaFile.find().select('name -_id').exec();
+    const schemaFiles = await SchemaFile.find().select('name _id description').exec();
     res.json(schemaFiles);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -34,33 +38,25 @@ app.get("/schemas", async (req, res) => {
 });
 
 // Endpoint to get a single configuration file
-app.get("/configs/:fileName", async (req, res) => {
+app.get("/configs/:schemaId", async (req, res) => {
   try {
-    const { fileName } = req.params;
-    const configFile = await ConfigFile.findOne({ fileName }).exec();
-    if (!configFile) {
+    const configFiles = await ConfigFile.find({ schemaId: req.params.schemaId }).select('name _id description').exec();
+
+    if (!configFiles.length) {
       return res.status(404).send('Configuration file not found.');
     }
-    res.json(configFile.data);
+    res.json(configFiles);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// Endpoint to upload a schema file
-// app.post("/upload-schema", upload.single('schema'), async (req, res) => {
-//   try {
-//     if (!req.file) {
-//       return res.status(400).send('No file uploaded.');
-//     }
-//     const newSchema = new SchemaFile({ name: req.file.originalname, data: req.file.buffer });
-//     await newSchema.save();
-//     res.status(200).json({ message: "File uploaded successfully", file: req.file.originalname });
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
+// Catch-all error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
-app.listen(parseInt(port), () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(parseInt(process.env.PORT), () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });

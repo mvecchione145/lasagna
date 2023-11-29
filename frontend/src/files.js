@@ -23,7 +23,7 @@ async function getSchemas() {
     });
 }
 
-async function getConfigs(schemaName) {
+async function getConfigs(schemaId) {
   const config = {
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -31,13 +31,13 @@ async function getConfigs(schemaName) {
   };
 
   return axios
-    .get(`${backendUrl}/configs/${schemaName}`, config)
+    .get(`${backendUrl}/configs/${schemaId}`, config)
     .then((response) => {
       return response.data;
     })
     .catch((error) => {
       console.error(
-        `Error fetching schemas from ${backendUrl}/configs/${schemaName}`,
+        `Error fetching schemas from ${backendUrl}/configs/${schemaId}`,
         error
       );
       throw error;
