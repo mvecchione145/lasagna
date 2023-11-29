@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFolderPlus } from "@fortawesome/free-solid-svg-icons";
+
 function SchemasTable(props) {
   const navigate = useNavigate(); // Initialize useNavigate
 
@@ -13,9 +16,14 @@ function SchemasTable(props) {
     navigate(`/list-configs/${_id}`);
   };
 
+  // Function to handle redirection to add schema page
+  const handleAddSchema = () => {
+    navigate("/add-schema");
+  };
+
   return (
     <div className="container pt-5">
-      <table className="table">
+      <table className="table text-center">
         <thead>
           <tr>
             <th>schemas</th>
@@ -26,13 +34,13 @@ function SchemasTable(props) {
         <tbody>
           {props.files.map((file, index) => (
             <tr key={file._id}>
-              <td className="text-left">{file.name}</td>
-              <td className="text-left">
+              <td title={`ID: ${file._id}`}>{file.name}</td>
+              <td>
                 <div className="badge bg-secondary text-wrap">
                   {file.description}
                 </div>
               </td>
-              <td className="text-right">
+              <td>
                 <button
                   className="btn btn-dark me-2"
                   onClick={() => handleAddConfig(file._id)}
@@ -48,6 +56,16 @@ function SchemasTable(props) {
               </td>
             </tr>
           ))}
+          <tr>
+            <td colSpan="3">
+              <button
+                className="btn btn-dark" // Use a class to indicate an action like 'add'
+                onClick={handleAddSchema}
+              >
+                <FontAwesomeIcon icon={faFolderPlus} />
+              </button>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

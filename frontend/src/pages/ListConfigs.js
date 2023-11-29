@@ -31,7 +31,7 @@ function ListConfigs() {
 
   return (
     <div className="container">
-      <ConfigsTable files={files} schemaName={schema.name} />
+      <ConfigsTable files={files} schema={schema} />
     </div>
   );
 }
