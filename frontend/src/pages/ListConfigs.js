@@ -2,12 +2,13 @@ import "./ListConfigs.css";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { getConfigs } from "./../files";
+import { getConfigs, getSchema } from "./../files";
 import ConfigsTable from "../components/ConfigsTable";
 
 function ListConfigs() {
   let { schemaId } = useParams();
   const [files, setFiles] = useState([]);
+  const [schema, setSchema] = useState([]);
 
   useEffect(() => {
     // Function to fetch file names from the server
@@ -15,6 +16,8 @@ function ListConfigs() {
       try {
         const data = await getConfigs(schemaId); // Adjust the URL as needed
         setFiles(data);
+        const schema = await getSchema(schemaId)
+        setSchema(schema)
       } catch (error) {
         console.error("Error fetching file names:", error);
       }
@@ -24,9 +27,11 @@ function ListConfigs() {
     fetchFiles();
   }, [schemaId]);
 
+  console.log(schema)
+
   return (
     <div className="container">
-      <ConfigsTable files={files} />
+      <ConfigsTable files={files} schemaName={schema.name} />
     </div>
   );
 }

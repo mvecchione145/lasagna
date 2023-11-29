@@ -44,7 +44,30 @@ async function getConfigs(schemaId) {
     });
 }
 
+async function getSchema(schemaId) {
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
+
+  return axios
+    .get(`${backendUrl}/schema/${schemaId}`, config)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(
+        `Error fetching schemas from ${backendUrl}/configs/${schemaId}`,
+        error
+      );
+      throw error;
+    });
+}
+
+
 export {
+  getSchema,
   getSchemas,
   getConfigs,
 };

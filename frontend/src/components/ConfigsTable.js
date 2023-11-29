@@ -8,10 +8,11 @@ function ConfigsTable(props) {
   };
 
   return (
+    <div className="container pt-5">
     <table className="table">
       <thead>
         <tr>
-          <th>files</th>
+          <th>{props.schemaName} configs</th>
           <th></th>
           <th></th>
         </tr>
@@ -20,15 +21,15 @@ function ConfigsTable(props) {
         {props.files.map((file, index) => (
           <tr key={file._id}>
             {/* Apply the same width to the td elements */}
-            <td className="text-left">
+            <td>
               {file.name}
             </td>
-            <td className="text-left">
+            <td>
               <div className="badge bg-secondary text-wrap">
                 {file.description}
               </div>
             </td>
-            <td className="text-right">
+            <td>
               <button
                 className="btn btn-dark"
                 onClick={() => handleEditConfig(file._id)}
@@ -40,6 +41,7 @@ function ConfigsTable(props) {
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
 

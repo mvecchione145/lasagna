@@ -51,6 +51,20 @@ app.get("/configs/:schemaId", async (req, res) => {
   }
 });
 
+// Endpoint to get a single configuration file
+app.get("/schema/:schemaId", async (req, res) => {
+  try {
+    const schemaFile = await SchemaFile.findOne({ _id: req.params.schemaId }).exec();
+
+    if (!schemaFile) {
+      return res.status(404).send('Configuration file not found.');
+    }
+    res.json(schemaFile);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Catch-all error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);

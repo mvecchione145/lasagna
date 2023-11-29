@@ -14,12 +14,10 @@ function Header() {
   return (
     <div className="container header">
       <div className="container title">
-        <p className="fs-1">
-          <FontAwesomeIcon className="fs-1" icon={faLayerGroup} /> lasagna
-        </p>
-      </div>
-      <div className="container subtitle">
-        <p className="fs-3">config management tool</p>
+      <h1>
+        <FontAwesomeIcon className="fs-1" icon={faLayerGroup} /> lasagna
+        <small class="text-body-secondary fs-5"> config management tool</small>
+      </h1>
       </div>
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
