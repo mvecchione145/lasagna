@@ -14,7 +14,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 # Copy the application files to the container
 COPY src /src
 COPY public /public
-COPY schemas /schemas
 COPY package.json .
 COPY package-lock.json .
 
