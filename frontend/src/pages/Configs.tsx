@@ -1,4 +1,7 @@
+import React from 'react';
+
 import './Configs.css';
+
 
 function Configs() {
   return (

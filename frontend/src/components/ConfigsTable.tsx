@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 function ConfigsTable(props) {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
   
-  // Function to handle redirection to add config page
   const handleEditConfig = (configId) => {
     navigate(`/edit-config/${configId}`);
   };
@@ -36,7 +36,6 @@ function ConfigsTable(props) {
         <tbody>
           {props.files.map((file, index) => (
             <tr key={file._id}>
-              {/* Apply the same width to the td elements */}
               <td title={`ID: ${file._id}`}>
                 {file.name}
               </td>
@@ -53,7 +52,7 @@ function ConfigsTable(props) {
                   edit config
                 </button>
                 <button
-                  className="btn btn-dark ml-2" // Added ml-2 for spacing, adjust class as necessary
+                  className="btn btn-dark ml-2"
                   onClick={() => handleCopyId(file._id)}
                 >
                   copy id
@@ -62,11 +61,10 @@ function ConfigsTable(props) {
             </tr>
           ))}
           <tr>
-            <td colSpan="3">
+            <td colSpan={3}>
               <button
                 className="btn btn-dark"
                 onClick={() => handleAddConfig(props.schema._id)}
-                // onClick={()=>{}}
               >
                 <FontAwesomeIcon icon={faFileCirclePlus} />
               </button>

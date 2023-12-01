@@ -1,5 +1,7 @@
-// Import Bootstrap CSS
+import React from "react";
+
 import "./Spinner.css";
+
 
 function Spinner() {
   return (

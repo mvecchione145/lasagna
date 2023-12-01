@@ -1,12 +1,11 @@
-// Import Bootstrap CSS
+import React from "react";
+
 import "./Footer.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLayerGroup,
-} from "@fortawesome/free-solid-svg-icons";
+import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 
-function Footer() {
+const Footer: React.FC = () => {
   return (
     <div className="container footer fixed-bottom text-center">
       <p className="fs-6">

@@ -1,33 +1,37 @@
 import React, { useState, useEffect } from "react";
 import "./Schemas.css";
 
-import SchemasTable from "../components/SchemasTable";
+import SchemasTable from "../components/SchemasTable.tsx";
 
-import {getSchemas} from "./../files";
+import { getSchemas } from "./../files.ts";
 
-function Schemas() {
-  const [files, setFiles] = useState([]);
+type FileSchema = {
+  _id: string,
+  name: string,
+  description: string,
+};
+
+const Schemas: React.FC = () => {
+  const [files, setFiles] = useState<FileSchema[]>([]);
 
   useEffect(() => {
-    // Function to fetch file names from the server
     const fetchFiles = async () => {
       try {
-        const data = await getSchemas(); // Adjust the URL as needed
+        const data = await getSchemas();
         setFiles(data);
       } catch (error) {
         console.error("Error fetching file names:", error);
       }
     };
 
-    // Call the fetch function
     fetchFiles();
-  }, []); // The empty array causes this effect to only run once on mount
+  }, []);
 
   return (
     <div className="container schemas">
       <SchemasTable files={files} />
     </div>
   );
-}
+};
 
 export default Schemas;

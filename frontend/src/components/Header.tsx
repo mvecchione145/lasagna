@@ -1,6 +1,4 @@
-// Import Bootstrap CSS
-import "./Header.css";
-
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCog,
@@ -10,14 +8,17 @@ import {
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Header() {
+import "./Header.css";
+
+
+const Header: React.FC = () => {
   return (
     <div className="container header">
       <div className="container title">
-      <h1>
-        <FontAwesomeIcon className="fs-1" icon={faLayerGroup} /> lasagna
-        <small class="text-body-secondary fs-5"> config management tool</small>
-      </h1>
+        <h1>
+          <FontAwesomeIcon className="fs-1" icon={faLayerGroup} /> lasagna
+          <small className="text-body-secondary fs-5"> config management tool</small>
+        </h1>
       </div>
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
@@ -41,8 +42,7 @@ function Header() {
               </li>
               <li className="nav-item">
                 <a className="nav-link" aria-current="page" href="/schemas">
-                  <FontAwesomeIcon className="fs-4" icon={faFolderTree} />{" "}
-                  schemas
+                  <FontAwesomeIcon className="fs-4" icon={faFolderTree} /> schemas
                 </a>
               </li>
               <li className="nav-item">
@@ -61,6 +61,6 @@ function Header() {
       </nav>
     </div>
   );
-}
+};
 
 export default Header;
