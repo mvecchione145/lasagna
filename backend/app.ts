@@ -36,7 +36,7 @@ app.use(cors({
 }));
 
 
-app.get("/schemas", async (req, res) => {
+app.get("/schemas", async (req: express.Request, res: express.Response) => {
   try {
     const schemaFiles = await SchemaFile.find().select('name _id description').exec();
     res.json(schemaFiles);
@@ -46,7 +46,7 @@ app.get("/schemas", async (req, res) => {
 });
 
 
-app.get("/configs/:schemaId", async (req, res) => {
+app.get("/configs/:schemaId", async (req: express.Request, res: express.Response) => {
   try {
     const configFiles = await ConfigFile.find({ schemaId: req.params.schemaId }).select('fileName _id').exec();
 
@@ -60,7 +60,7 @@ app.get("/configs/:schemaId", async (req, res) => {
 });
 
 
-app.get("/schema/:schemaId", async (req, res) => {
+app.get("/schema/:schemaId", async (req: express.Request, res: express.Response) => {
   try {
     const schemaFile = await SchemaFile.findOne({ _id: req.params.schemaId }).exec();
 
