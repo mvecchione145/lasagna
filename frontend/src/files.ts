@@ -1,15 +1,15 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
-declare const REACT_APP_BACKEND_URL: string | undefined;
+import { Config } from "./global";
 
-interface Schema {
+const backendUrl: string | undefined = process.env.REACT_APP_BACKEND_URL;
+
+interface File {
   _id: string,
   name: string,
   description: string,
 };
 
-interface Config {};
-
-async function getSchemas(): Promise<Schema[]> {
+async function getSchemas(): Promise<File[]> {
   const config = {
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -17,12 +17,12 @@ async function getSchemas(): Promise<Schema[]> {
   };
 
   try {
-    const response: AxiosResponse<Schema[]> = await axios.get(`${REACT_APP_BACKEND_URL}/schemas`, config);
+    const response: AxiosResponse<File[]> = await axios.get(`${backendUrl}/schemas`, config);
     return response.data;
   } catch (error) {
     const axiosError: AxiosError = error as AxiosError;
     console.error(
-      `Error fetching schemas from ${REACT_APP_BACKEND_URL}/schemas:`,
+      `Error fetching schemas from ${backendUrl}/schemas:`,
       axiosError.message
     );
     throw axiosError;
@@ -37,19 +37,19 @@ async function getConfigs(schemaId: string): Promise<Config[]> {
   };
 
   try {
-    const response: AxiosResponse<Config[]> = await axios.get(`${REACT_APP_BACKEND_URL}/configs/${schemaId}`, config);
+    const response: AxiosResponse<Config[]> = await axios.get(`${backendUrl}/configs/${schemaId}`, config);
     return response.data;
   } catch (error) {
     const axiosError: AxiosError = error as AxiosError;
     console.error(
-      `Error fetching configs from ${REACT_APP_BACKEND_URL}/configs/${schemaId}:`,
+      `Error fetching configs from ${backendUrl}/configs/${schemaId}:`,
       axiosError.message
     );
     throw axiosError;
   }
 }
 
-async function getSchema(schemaId: string): Promise<Schema> {
+async function getSchema(schemaId: string): Promise<File> {
   const config = {
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -57,12 +57,12 @@ async function getSchema(schemaId: string): Promise<Schema> {
   };
 
   try {
-    const response: AxiosResponse<Schema> = await axios.get(`${REACT_APP_BACKEND_URL}/schema/${schemaId}`, config);
+    const response: AxiosResponse<File> = await axios.get(`${backendUrl}/schema/${schemaId}`, config);
     return response.data;
   } catch (error) {
     const axiosError: AxiosError = error as AxiosError;
     console.error(
-      `Error fetching schema from ${REACT_APP_BACKEND_URL}/schema/${schemaId}:`,
+      `Error fetching schema from ${backendUrl}/schema/${schemaId}:`,
       axiosError.message
     );
     throw axiosError;

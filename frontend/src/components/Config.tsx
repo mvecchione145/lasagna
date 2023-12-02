@@ -1,28 +1,39 @@
-// Import Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Config.css';
 
 import React from 'react';
 import validator from '@rjsf/validator-ajv8';
 import Form from '@rjsf/bootstrap-4';
+import { RJSFSchema, IconButtonProps } from '@rjsf/utils';
 
-// Define the shape of the expected schema prop
-interface Schema {
-  // Add the expected properties of the schema here
-}
+import { Schema } from "../global";
 
-// Define the props expected by Config
+
 interface ConfigProps {
   schema: Schema;
+}
+
+function AddButton(props: IconButtonProps) {
+  const { icon, iconType, ...btnProps } = props;
+  return (
+    <button {...btnProps}>
+      {icon} <p>Add</p>
+    </button>
+  );
 }
 
 const log = (type: string) => console.log.bind(console, type);
 
 const Config: React.FC<ConfigProps> = (props) => {
-  // Define uiSchema with custom class for the submit button
+  const [formData, setFormData] = React.useState(null);
   const uiSchema = {
-    submit: {
-      "classNames": "btn-dark"
+    "ui:submitButtonOptions": {
+      "submitText": "save",
+      "norender": false,
+      "props": {
+        "disabled": false,
+        "className": "btn btn-dark"
+      }
     }
   };
 
@@ -30,12 +41,14 @@ const Config: React.FC<ConfigProps> = (props) => {
     <div className="container config">
       <div className='container'>
         <Form
-          schema={props.schema}
-          uiSchema={uiSchema} // Pass the uiSchema to the Form
+          schema={props.schema as RJSFSchema}
+          formData={formData}
+          uiSchema={uiSchema}
           validator={validator}
           onChange={log('changed')}
           onSubmit={log('submitted')}
           onError={log('errors')}
+          templates={{ ButtonTemplates: { AddButton } }}
         />
       </div>
     </div>

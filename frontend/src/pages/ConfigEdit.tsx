@@ -1,10 +1,10 @@
 import React from 'react';
-import Config from '../components/Config.tsx';
+import Config from '../components/Config';
+
+import { Schema } from '../global';
 
 import './ConfigEdit.css';
 
-
-interface Schema { }
 
 interface ConfigEditProps {
   schema: Schema;

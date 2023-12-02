@@ -8,7 +8,7 @@ const config: webpack.Configuration = {
     // ... other plugins
 
     // Use the EnvironmentPlugin
-    new webpack.EnvironmentPlugin(['REACT_APP_BACKEND_URL'])
+    new webpack.EnvironmentPlugin({'REACT_APP_BACKEND_URL': 'http://localhost:3001'})
   ],
 
   // ... rest of the webpack config

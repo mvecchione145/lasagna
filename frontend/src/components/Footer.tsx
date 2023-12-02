@@ -5,6 +5,7 @@ import "./Footer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 
+
 const Footer: React.FC = () => {
   return (
     <div className="container footer fixed-bottom text-center">

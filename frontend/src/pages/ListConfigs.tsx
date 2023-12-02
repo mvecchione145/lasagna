@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { getConfigs, getSchema } from "../files.ts";
-import ConfigsTable from "../components/ConfigsTable.tsx";
+import { getConfigs, getSchema } from "../files";
+import ConfigsTable from "../components/ConfigsTable";
+import { Config, FileMeta } from '../global';
+
 
 import "./ListConfigs.css";
 
 
-type FileConfig = {};
-
-type Schema = {};
-
 const ListConfigs: React.FC = () => {
   let { schemaId } = useParams<{ schemaId: string }>();
 
-  const [files, setFiles] = useState<FileConfig[]>([]);
-  const [schema, setSchema] = useState<Schema | null>(null);
+  const [files, setFiles] = useState<Config[]>([]);
+  const [schema, setSchema] = useState<FileMeta | undefined>(undefined);
 
   useEffect(() => {
     const fetchFiles = async () => {
@@ -36,8 +34,6 @@ const ListConfigs: React.FC = () => {
     // Call the fetch function
     fetchFiles();
   }, [schemaId]);
-
-  console.log(schema);
 
   return (
     <div className="container">

@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./Schemas.css";
 
-import SchemasTable from "../components/SchemasTable.tsx";
+import { FileMeta } from '../global';
 
-import { getSchemas } from "./../files.ts";
+import SchemasTable from "../components/SchemasTable";
 
-type FileSchema = {
-  _id: string,
-  name: string,
-  description: string,
-};
+import { getSchemas } from "./../files";
+
 
 const Schemas: React.FC = () => {
-  const [files, setFiles] = useState<FileSchema[]>([]);
+  const [files, setFiles] = useState<FileMeta[]>([]);
 
   useEffect(() => {
     const fetchFiles = async () => {
