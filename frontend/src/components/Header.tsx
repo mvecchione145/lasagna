@@ -4,7 +4,6 @@ import {
   faCog,
   faLayerGroup,
   faFileCode,
-  faFolderTree,
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -38,11 +37,6 @@ const Header: React.FC = () => {
               <li className="nav-item">
                 <a className="nav-link" aria-current="page" href="/">
                   <FontAwesomeIcon className="fs-4" icon={faHome} /> home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="/schemas">
-                  <FontAwesomeIcon className="fs-4" icon={faFolderTree} /> schemas
                 </a>
               </li>
               <li className="nav-item">

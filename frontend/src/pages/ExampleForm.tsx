@@ -1,17 +1,30 @@
 import React from 'react';
-import Config from '../components/Config';
-import exampleSchema from "../schemas/songs.json";
-
-import { Schema } from "../global";
-
+import renderForm from './../components/Config';
 import './ConfigEdit.css';
 
 
-function ConfigEdit() {
+const log = (type: string) => console.log.bind(console, type);
 
+const uiSchema = {
+  "ui:submitButtonOptions": {
+    "submitText": "Save",
+    "norender": false,
+    "props": {
+      "disabled": false,
+      "className": "btn btn-dark"
+    }
+  }
+};
+
+
+function ConfigEdit() {
+  const [formData, setFormData] = React.useState(null);
+  
+  renderForm(formData, uiSchema, log('change'), log('submit'), log('error'));
   return (
     <div className='container'>
-      <Config schema={exampleSchema as unknown as Schema} />
+      <div id='form'>
+      </div>
     </div>
   );
 }

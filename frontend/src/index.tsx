@@ -17,7 +17,6 @@ const ExampleForm = lazy(() => import("./pages/ExampleForm"));
 const Configs = lazy(() => import("./pages/Configs"));
 const Home = lazy(() => import("./pages/Home"));
 const ListConfigs = lazy(() => import("./pages/ListConfigs"));
-const Schemas = lazy(() => import("./pages/Schemas"));
 const Settings = lazy(() => import("./pages/Settings"));
 
 const rootElement = document.getElementById("root");
@@ -33,9 +32,8 @@ const App: FunctionComponent = () => (
           <Route path="/" element={<Home />} />
           <Route path="/example" element={<ExampleForm />} />
           <Route path="/configs" element={<Configs />} />
-          <Route path="/schemas" element={<Schemas />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/list-configs/:schemaId" element={<ListConfigs />} />
+          <Route path="/list-configs" element={<ListConfigs />} />
         </Routes>
       </BrowserRouter>
     </Suspense>

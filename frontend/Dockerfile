@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 # Use the specific version of node image from alpine
 FROM node:18-alpine3.18
 
@@ -17,8 +10,17 @@ COPY public /public
 COPY package.json .
 COPY package-lock.json .
 
-# Install dependencies
-RUN npm install
+# Install production dependencies.
+RUN npm install --only=production
 
-# Define the command to run the app using ENTRYPOINT
-ENTRYPOINT [ "npm", "run", "start:dev" ]
+# Build the app for production.
+RUN npm run build
+
+# Install `serve` to run the application.
+RUN npm install -g serve
+
+# The default port that serve uses (can be changed with the -l flag)
+EXPOSE $PORT
+
+# Run the web service on container startup.
+CMD serve -s build -l $PORT

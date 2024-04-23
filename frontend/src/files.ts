@@ -29,7 +29,7 @@ async function getSchemas(): Promise<File[]> {
   }
 }
 
-async function getConfigs(schemaId: string): Promise<Config[]> {
+async function getConfigs(): Promise<Config[]> {
   const config = {
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -37,40 +37,20 @@ async function getConfigs(schemaId: string): Promise<Config[]> {
   };
 
   try {
-    const response: AxiosResponse<Config[]> = await axios.get(`${backendUrl}/configs/${schemaId}`, config);
+    const response: AxiosResponse<Config[]> = await axios.get(`${backendUrl}/configs`, config);
     return response.data;
   } catch (error) {
     const axiosError: AxiosError = error as AxiosError;
     console.error(
-      `Error fetching configs from ${backendUrl}/configs/${schemaId}:`,
+      `Error fetching configs from ${backendUrl}/configs:`,
       axiosError.message
     );
     throw axiosError;
   }
 }
 
-async function getSchema(schemaId: string): Promise<File> {
-  const config = {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
-  };
-
-  try {
-    const response: AxiosResponse<File> = await axios.get(`${backendUrl}/schema/${schemaId}`, config);
-    return response.data;
-  } catch (error) {
-    const axiosError: AxiosError = error as AxiosError;
-    console.error(
-      `Error fetching schema from ${backendUrl}/schema/${schemaId}:`,
-      axiosError.message
-    );
-    throw axiosError;
-  }
-}
 
 export {
-  getSchema,
   getSchemas,
   getConfigs,
 };

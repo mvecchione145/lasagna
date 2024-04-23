@@ -1,29 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
-import { FileMeta, Config } from "../global";
+import { Config } from "../global";
 
 
 function ConfigsTable(props: {
-  schema: FileMeta | undefined;
   files: Config[] | undefined;
 }) {
   const [showToast, setShowToast] = useState(false);
   const files = props.files || [];
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (typeof props.schema === "undefined") {
-      setShowToast(true);
-      setTimeout(() => {
-        navigate(`/schemas`);
-      }, 3000); // Redirect after showing the toast for 3 seconds
-    }
-  }, [props.schema, navigate]);
 
   const handleEditConfig = (configId: string) => {
     navigate(`/edit-config/${configId}`);
@@ -37,8 +27,8 @@ function ConfigsTable(props: {
     }
   };
 
-  const handleAddConfig = (schemaId: string) => {
-    navigate(`/add-config/${schemaId}`);
+  const handleAddConfig = () => {
+    navigate('/add-config');
   };
 
   return (
@@ -59,11 +49,11 @@ function ConfigsTable(props: {
           <div className="toast-body">Schema could not be found.</div>
         </div>
       )}
-      {props.schema && (
+      {true && (
         <table className="table text-center">
           <thead>
             <tr>
-              <th>{props.schema.name} configs</th>
+              <th>configs</th>
               <th></th>
               <th></th>
             </tr>
@@ -95,10 +85,10 @@ function ConfigsTable(props: {
             ))}
             <tr>
               <td colSpan={3}>
-                {props.schema && (
+                {true && (
                   <button
                     className="btn btn-dark"
-                    onClick={() => handleAddConfig(props.schema!._id)}
+                    onClick={() => handleAddConfig()}
                   >
                     <FontAwesomeIcon icon={faFileCirclePlus} />
                   </button>
