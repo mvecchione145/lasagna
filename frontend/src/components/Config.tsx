@@ -4,7 +4,6 @@ import Form from '@rjsf/core';
 import AddButton from './../components/Button';
 import { RJSFSchema } from '@rjsf/utils';
 import schema from './../schema/schema.json'
-import ReactDOM from "react-dom/client";
 
 
 const log = (type: string) => console.log.bind(console, type);
@@ -21,19 +20,26 @@ const uiSchema = {
 
 
 function FormComponent() {
-  // const [formData, setFormData] = React.useState(null);
-  const rootElement = document.getElementById('form');
-  if (!rootElement) throw new Error('Failed to find the root element');
-  const root = ReactDOM.createRoot(rootElement);
+  let [formData, setFormData] = React.useState({});
+  const handleSubmit = () => {
+    if (formData) {
+      log(formData.toString());
+    } else {
+      log('nothing');
+    };
+  };
+  const handleChange = () => {
+    log('change');
+  };
 
-  root.render(
+  return (
     <Form
       schema={schema as RJSFSchema}
       // formData={formData}
       uiSchema={uiSchema}
       validator={validator}
-      onChange={log('changed')}
-      onSubmit={log('submitted')}
+      onChange={handleChange}
+      onSubmit={handleSubmit}
       onError={log('errors')}
       templates={{ ButtonTemplates: { AddButton } }}
     />
