@@ -2,6 +2,7 @@ import React, { Suspense, lazy, FunctionComponent } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
+import FormComponent from "./components/Config";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Spinner from "./components/Spinner";
@@ -14,6 +15,7 @@ import "bootstrap/dist/js/bootstrap";
 
 // Lazy load pages
 const ExampleForm = lazy(() => import("./pages/ExampleForm"));
+const ConfigEdit = lazy(() => import("./pages/ConfigEdit"));
 const Configs = lazy(() => import("./pages/Configs"));
 const Home = lazy(() => import("./pages/Home"));
 const ListConfigs = lazy(() => import("./pages/ListConfigs"));
@@ -30,6 +32,7 @@ const App: FunctionComponent = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/new-config" element={<ConfigEdit />} />
           <Route path="/example" element={<ExampleForm />} />
           <Route path="/configs" element={<Configs />} />
           <Route path="/settings" element={<Settings />} />
@@ -46,5 +49,7 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+FormComponent();
 
 reportWebVitals();
